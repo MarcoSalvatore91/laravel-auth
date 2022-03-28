@@ -7,18 +7,20 @@
         <thead>
             <tr>
                 <th scope="col">Titolo</th>
-                <th scope="col">Contenuto</th>
-                <th scope="col">Immagine</th>
                 <th scope="col">Slug</th>
+                <th scope="col">Creato il:</th>
+                <th scope="col">Contenuto</th>
+                <th scope="col">Azioni</th>
             </tr>
         </thead>
         <tbody>
             @forelse($posts as $post)
             <tr>
                 <th scope="row">{{ $post->title }}</th>
-                <td>{{ $post->content }}</td>
-                <td>{{ $post->image }}</td>
                 <td>{{ $post->slug }}</td>
+                <td>{{ $post->created_at }}</td>
+                <td>{{ $post->content }}</td>
+                <td><i class="fa-solid fa-pen"></i></td>
             </tr>
             @empty
             <p>Non Ci Sono Post</p>
