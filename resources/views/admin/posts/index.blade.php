@@ -2,7 +2,16 @@
 
 @section('content')
 <div class="container">
-    <h1>Personal Posts</h1>
+    <div class="d-flex justify-content-between align-items-center">
+        <div>
+            <h1>Personal Posts</h1>
+        </div>
+        <div>
+            <a href="{{ route('admin.posts.create') }}">
+                <h3 class="btn btn-primary">+ Aggiungi</h3>
+            </a>
+        </div>
+    </div>
     <table class="table">
         <thead>
             <tr>
@@ -20,7 +29,7 @@
                 <td>{{ $post->slug }}</td>
                 <td>{{ $post->created_at }}</td>
                 <td>{{ $post->content }}</td>
-                <td class="d-flex">
+                <td class=" d-flex">
                     <a class="btn btn-info mr-2" href="{{ route('admin.posts.show', $post->id) }}"><i class="fa-solid fa-eye"></i></a>
                     <a class="btn btn-success mr-2" href="{{ route('admin.posts.edit', $post->id) }}"><i class="fa-solid fa-pen"></a></i>
                 </td>
