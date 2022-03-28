@@ -20,7 +20,10 @@
                 <td>{{ $post->slug }}</td>
                 <td>{{ $post->created_at }}</td>
                 <td>{{ $post->content }}</td>
-                <td><a href="{{ route('admin.posts.edit', $post->id) }}"><i class="fa-solid fa-pen"></a></i></td>
+                <td>
+                    <a href="{{ route('admin.posts.show', $post->id) }}"><i class="fa-solid fa-eye"></i></a>
+                    <a href="{{ route('admin.posts.edit', $post->id) }}"><i class="fa-solid fa-pen"></a></i>
+                </td>
             </tr>
             @empty
             <p>Non Ci Sono Post</p>
