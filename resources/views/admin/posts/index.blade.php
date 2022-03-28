@@ -32,6 +32,12 @@
                 <td class=" d-flex">
                     <a class="btn btn-info mr-2" href="{{ route('admin.posts.show', $post->id) }}"><i class="fa-solid fa-eye"></i></a>
                     <a class="btn btn-success mr-2" href="{{ route('admin.posts.edit', $post->id) }}"><i class="fa-solid fa-pen"></a></i>
+                    <form action="{{ route('admin.posts.destroy', $post->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+
+                        <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></button>
+                    </form>
                 </td>
             </tr>
             @empty
