@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class PostController extends Controller
 {
@@ -38,6 +39,19 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate(
+            [
+                'title' => ['required', 'string', 'unique:posts', 'max:50'],
+                'content' => 'string | required',
+            ],
+            [
+                'title.required' => 'Il titolo è obbligatorio',
+                'title.unique' => 'Titolo già esistente',
+                'title.max' => 'Il titolo non può contenere piu\' di 50 caratteri',
+                'content.required' => 'La descrizione è obbligatoria'
+            ]
+        );
+
         $data = $request->all();
 
         $new_post = new Post();
@@ -79,6 +93,20 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
+
+        $request->validate(
+            [
+                'title' => ['required', 'string', Rule::unique('posts')->ignore($post->id), 'max:50'],
+                'content' => 'string | required',
+            ],
+            [
+                'title.required' => 'Il titolo è obbligatorio',
+                'title.unique' => 'Titolo già esistente',
+                'title.max' => 'Il titolo non può contenere piu\' di 50 caratteri',
+                'content.required' => 'La descrizione è obbligatoria'
+            ]
+        );
+
         $data = $request->all();
 
         $data['slug'] = Str::slug($request->title, '-');

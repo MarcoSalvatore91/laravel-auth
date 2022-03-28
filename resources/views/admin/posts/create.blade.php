@@ -5,7 +5,7 @@
     @csrf
     <div class="form-group">
         <label for="title">Titolo</label>
-        <input type="text" class="form-control" id="title" name="title" required minlength="5" maxlength="50" value="{{ old('title') }}">
+        <input type="text" class="form-control" @error('title') is-invalid @enderror id="title" name="title" required minlength="5" maxlength="50" value="{{ old('title') }}">
         <small class="form-text text-muted">Inserisci un titolo</small>
     </div>
     <div class="form-group">
@@ -14,8 +14,8 @@
         <small class="form-text text-muted">Inserisci un'immagine</small>
     </div>
     <div class="form-group">
-        <label for="content">Example textarea</label>
-        <textarea class="form-control" id="content" name="content" rows="5" required minlength="5">{{ old('content') }}</textarea>
+        <label for="content">Descrizione</label>
+        <textarea class="form-control" @error('content') is-invalid @enderror id="content" name="content" rows="5" required minlength="5">{{ old('content') }}</textarea>
         <small class="form-text text-muted">Aggiungi una descrizione</small>
     </div>
     <div class="d-flex justify-content-end">
