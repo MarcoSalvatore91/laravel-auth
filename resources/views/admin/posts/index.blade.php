@@ -65,5 +65,8 @@
             @endforelse
         </tbody>
     </table>
+    @if($posts->hasPages())
+    {{ $posts->links() }}
+    @endif
 </div>
 @endsection
