@@ -28,7 +28,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('admin.posts.create');
+        $post = new Post();
+
+        return view('admin.posts.create', compact('post'));
     }
 
     /**
@@ -54,12 +56,12 @@ class PostController extends Controller
 
         $data = $request->all();
 
-        $new_post = new Post();
-        $new_post->fill($data);
-        $new_post->slug = Str::slug($new_post->title, '-');
-        $new_post->save();
+        $post = new Post();
+        $post->fill($data);
+        $post->slug = Str::slug($post->title, '-');
+        $post->save();
 
-        return redirect()->route('admin.posts.show', $new_post);
+        return redirect()->route('admin.posts.show', $post);
     }
 
     /**
